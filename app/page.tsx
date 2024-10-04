@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
-import TelegramAuth from "@/components/TelegramAuth";
 import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
-import { getSession } from "@/utils/session";
 
 interface UserData {
   id: number;
