@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-async-client-component */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
-
+import TelegramAuth from "@/components/TelegramAuth";
+import { getSession } from "@/utils/session";
 import WebApp from "@twa-dev/sdk";
 import { useEffect, useState } from "react";
 
@@ -13,8 +15,9 @@ interface UserData {
   is_premium?: boolean;
 }
 
-export default function Home() {
+export default async function Home() {
   const[userData, setUserData] = useState<UserData | null>(null)
+  const session = await getSession()
 
   useEffect(()=> {
     if (WebApp.initDataUnsafe.user) {
@@ -37,6 +40,8 @@ export default function Home() {
                 <li>Language Code: {userData.language_code}</li>
                 <li>Is Premium: {userData.is_premium ? 'Yes' : 'No'}</li>
               </ul>
+              <pre>{JSON.stringify(session, null, 2)}</pre>
+              <TelegramAuth />
             </>
           ):
           (
